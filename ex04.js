@@ -1,4 +1,4 @@
-const cartItems = [
+const productItems = [
     {
         title: 'MacBook', quantity: 29
     },
@@ -12,7 +12,7 @@ const cartItems = [
 
 const deleteProduct = function (cart, productTitle) {
     let indexValue = cart.findIndex((item, index) => {
-        return item.title === productTitle
+        return item.title.toLowerCase() === productTitle.toLowerCase()
     })
     // console.log(indexValue)
     if (indexValue == -1) {
@@ -22,5 +22,5 @@ const deleteProduct = function (cart, productTitle) {
 
     return cart.splice(indexValue, 1)
 }
-let res = deleteProduct(cartItems, 'Acer')
-console.log(cartItems)
+let res = deleteProduct(productItems, 'HP')
+console.log(productItems)
