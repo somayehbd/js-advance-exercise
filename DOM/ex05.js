@@ -6,7 +6,8 @@ const deleteps = function (paragraphs,str) {
             return;
         }
 
-        p.remove()
+        let span=`<span style='background:yellow'>${str}</span>`;
+        p.innerHTML = p.innerHTML.replace(str, span);
     })
 
 }
