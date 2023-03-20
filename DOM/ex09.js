@@ -1,65 +1,57 @@
 
-const products = [
-    {
-        title: 'book1',
-        exist: true
-    },
-    {
-        title: 'book2',
-        exist: false
-    },
-    {
-        title: 'book3',
-        exist: true
-    },
-    {
-        title: 'book4',
-        exist: false
-    },
-]
+let products = []
 
 const filters = {
     searchItem: '',
     availableProduts: false
 }
+ const productsJSON=localStorage.getItem('product')
+ if(productsJSON !==null)
+ products=JSON.parse(productsJSON)
+
 const renderProducts = function (products, filters) {
     let filteredProducts = products.filter(function (item) {
         return item.title.toLowerCase().includes(filters.searchItem)
     })
-    //checkbox
-    filteredProducts=filteredProducts.filter(function (item) {
-        if (filters.availableProduts){
+    //checkbox for availableProdutcs
+    filteredProducts = filteredProducts.filter(function (item) {
+        if (filters.availableProduts) {
             return item.exist
         }
-           
+
         else {
             return true
         }
     })
-    //productTitle
+    // create p to display products
     document.querySelector('#products').innerHTML = ''
     filteredProducts.forEach(function (item) {
         const productEl = document.createElement('p')
         productEl.textContent = item.title
         document.querySelector('#products').appendChild(productEl)
+
     })
 }
 
 renderProducts(products, filters)
-
+//input event for searchProducts
 document.querySelector('#searchProducts').addEventListener('input', function (e) {
     filters.searchItem = e.target.value
     renderProducts(products, filters)
 })
+// event for add products
 document.querySelector('#Add-product-form').addEventListener('submit', function (e) {
     e.preventDefault()
+
     products.push({
         title: e.target.elements.ProductTitle.value
+        
     })
+    localStorage.setItem('product',JSON.stringify(products))
     renderProducts(products, filters)
     e.target.elements.value = ''
 })
-// checkbox event
+// checkbox event for available products
 document.querySelector('#checkbox').addEventListener('change', function (e) {
     filters.availableProduts = e.target.checked
     renderProducts(products, filters)
