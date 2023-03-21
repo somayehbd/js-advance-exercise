@@ -48,7 +48,7 @@ document.querySelector('#Add-product-form').addEventListener('submit', function 
         title: e.target.elements.ProductTitle.value
         
     })
-    localStorage.setItem('product',JSON.stringify(products))
+    saveProducts(products)
     renderProducts(products, filters)
     e.target.elements.value = ''
 })

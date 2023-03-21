@@ -7,3 +7,7 @@ const getSavedProducts = function () {
             return []
         }
 }
+
+const saveProducts=function(products){
+    localStorage.setItem('product',JSON.stringify(products))
+}
