@@ -1,11 +1,12 @@
 
-let products = []
+let products = getSavedProducts()
 
 const filters = {
     searchItem: '',
     availableProduts: false
 }
  const productsJSON=localStorage.getItem('product')
+ console.log(productsJSON)
  if(productsJSON !==null)
  products=JSON.parse(productsJSON)
 
