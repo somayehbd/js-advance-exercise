@@ -30,13 +30,24 @@ const renderProducts = function (products, filters) {
     // to display products
     document.querySelector('#products').innerHTML = ''
     filteredProducts.forEach(function (item) {
-    document.querySelector('#products').appendChild(createProductDom(item))
+        document.querySelector('#products').appendChild(createProductDom(item))
 
     })
 }
-//function for create p
-const createProductDom = function (item) {
-    const productEl = document.createElement('p')
-    productEl.textContent = item.title
+//function for create span,remove and checkbox
+const createProductDom = function (product) {
+    const productEl = document.createElement('div')
+    const checkbox = document.createElement('input')
+    const productItem = document.createElement('span')
+    const removeButton = document.createElement('button')
+
+    checkbox.setAttribute('type', 'checkbox')
+    productEl.appendChild(checkbox)
+
+    productItem.textContent = product.title
+    productEl.appendChild(productItem)
+
+    productEl.appendChild(removeButton)
+    removeButton.textContent = 'Remove'
     return productEl
 }
