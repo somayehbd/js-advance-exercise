@@ -5,34 +5,8 @@ const filters = {
     searchItem: '',
     availableProduts: false
 }
- const productsJSON=localStorage.getItem('product')
- console.log(productsJSON)
- if(productsJSON !==null)
- products=JSON.parse(productsJSON)
+ 
 
-const renderProducts = function (products, filters) {
-    let filteredProducts = products.filter(function (item) {
-        return item.title.toLowerCase().includes(filters.searchItem)
-    })
-    //checkbox for availableProdutcs
-    filteredProducts = filteredProducts.filter(function (item) {
-        if (filters.availableProduts) {
-            return item.exist
-        }
-
-        else {
-            return true
-        }
-    })
-    // create p to display products
-    document.querySelector('#products').innerHTML = ''
-    filteredProducts.forEach(function (item) {
-        const productEl = document.createElement('p')
-        productEl.textContent = item.title
-        document.querySelector('#products').appendChild(productEl)
-
-    })
-}
 
 renderProducts(products, filters)
 //input event for searchProducts
