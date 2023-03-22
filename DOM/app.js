@@ -5,7 +5,7 @@ const filters = {
     searchItem: '',
     availableProduts: false
 }
- 
+
 
 
 renderProducts(products, filters)
@@ -19,8 +19,10 @@ document.querySelector('#Add-product-form').addEventListener('submit', function 
     e.preventDefault()
 
     products.push({
-        title: e.target.elements.ProductTitle.value
-        
+        id: uuidv4(),
+        title: e.target.elements.ProductTitle.value,
+        exist: true
+
     })
     saveProducts(products)
     renderProducts(products, filters)

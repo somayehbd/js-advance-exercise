@@ -1,3 +1,5 @@
+
+
 //function for get products from localstorage
 const getSavedProducts = function () {
     const productsJSON = localStorage.getItem('product')
