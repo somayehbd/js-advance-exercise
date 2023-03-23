@@ -6,8 +6,6 @@ const filters = {
     availableProduts: false
 }
 
-
-
 renderProducts(products, filters)
 //input event for searchProducts
 document.querySelector('#searchProducts').addEventListener('input', function (e) {
@@ -32,6 +30,7 @@ document.querySelector('#Add-product-form').addEventListener('submit', function 
 document.querySelector('#checkbox').addEventListener('change', function (e) {
     filters.availableProduts = e.target.checked
     renderProducts(products, filters)
+   
 })
 
 
