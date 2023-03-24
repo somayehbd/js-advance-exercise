@@ -3,21 +3,19 @@
 //function for get products from localstorage
 const getSavedProducts = function () {
     const productsJSON = localStorage.getItem('product')
-    console.log(productsJSON)
     if (productsJSON !== null)
-        return JSON.parse(productsJSON)
+        return JSON.parse(productsJSON);
     else {
-        return []
+        return [];
     }
 }
+
 // function for save products in localStorage
 const saveProducts = function (products) {
     localStorage.setItem('product', JSON.stringify(products))
 }
-
 //function for delete prpduct
 const removeProduct = function (id) {
-    debugger;
     const producindex = products.findIndex(function (item) {
         return item.id == id
     })
@@ -26,7 +24,16 @@ const removeProduct = function (id) {
         return;
 
     products.splice(producindex, 1)
-    saveProducts(products)
+}
+// function for to taggle property exist
+const toggleProduct = function (id) {
+    const productIndex = products.find(function (item) {
+        return item.id == id
+    })
+    if (productIndex == undefined || productIndex == null)
+        return
+    productIndex.exist = !productIndex.exist
+
 }
 //function for filter products
 const renderProducts = function (products, filters) {
@@ -59,6 +66,10 @@ const createProductDom = function (product) {
 
     checkbox.setAttribute('type', 'checkbox')
     productEl.appendChild(checkbox)
+    checkbox.addEventListener('change', function () {
+        toggleProduct(product.id)
+        saveProducts(products)
+    })
 
     productItem.textContent = product.title
     productEl.appendChild(productItem)
@@ -68,7 +79,7 @@ const createProductDom = function (product) {
 
     removeButton.addEventListener('click', function () {
         removeProduct(product.id)
-        renderProducts  (products, filters)
+        renderProducts(products, filters)
     })
     return productEl
 }
