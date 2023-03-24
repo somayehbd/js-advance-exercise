@@ -15,9 +15,9 @@ document.querySelector('#searchProducts').addEventListener('input', function (e)
 // event for add products
 document.querySelector('#Add-product-form').addEventListener('submit', function (e) {
     e.preventDefault()
-
+    const id = uuidv4()
     products.push({
-        id: uuidv4(),
+        id: id,
         title: e.target.elements.ProductTitle.value,
         exist: true
 
@@ -30,7 +30,7 @@ document.querySelector('#Add-product-form').addEventListener('submit', function 
 document.querySelector('#checkbox').addEventListener('change', function (e) {
     filters.availableProduts = e.target.checked
     renderProducts(products, filters)
-   
+
 })
 
 
