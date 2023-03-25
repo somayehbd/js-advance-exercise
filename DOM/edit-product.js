@@ -13,3 +13,10 @@ if (product === undefined || null) {
 titleElement.value = product.title
 priceElement.value = product.price
 
+//update product info 
+titleElement.addEventListener('input',function(e){
+    e.preventDefault()
+    product.title = titleElement.value;
+    product.price = priceElement.value;
+    saveProducts(products)
+})
