@@ -14,7 +14,7 @@ const getSavedProducts = function () {
 const saveProducts = function (products) {
     localStorage.setItem('product', JSON.stringify(products))
 }
-//function for delete prpduct
+//function for delete product
 const removeProduct = function (id) {
     const producindex = products.findIndex(function (item) {
         return item.id == id
