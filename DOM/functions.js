@@ -84,3 +84,7 @@ const createProductDom = function (product) {
     })
     return productEl
 }
+const lastEditMessage=function(updated){
+    let result = moment(updated)
+    return result.format('MMM Do YYYY')
+}

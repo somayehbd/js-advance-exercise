@@ -14,8 +14,9 @@ if (product === undefined || null) {
 
 titleElement.value = product.title
 priceElement.value = product.price
-let updated = moment(product.updated)
-dateElement.textContent = updated.format('MMM Do YYYY')
+// let updated = moment(product.updated)
+// dateElement.textContent = updated.format('MMM Do YYYY')
+dateElement.textContent=lastEditMessage(product.updated)
 
 //update product info 
 titleElement.addEventListener('input', function (e) {
