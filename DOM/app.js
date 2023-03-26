@@ -19,8 +19,9 @@ document.querySelector('#Add-product-form').addEventListener('submit', function 
     products.push({
         id: id,
         title: e.target.elements.ProductTitle.value,
-        exist: true
-
+        exist: true,
+        created: new Date(),
+        updated: new Date()
     })
     saveProducts(products)
     renderProducts(products, filters)
@@ -32,5 +33,9 @@ document.querySelector('#checkbox').addEventListener('change', function (e) {
     renderProducts(products, filters)
 
 })
-
-
+window.addEventListener('storage', function(event) {
+    if (event.key === 'product') {
+      const products = JSON.parse(event.newValue);
+      renderProducts(products, filters)
+    }
+})
