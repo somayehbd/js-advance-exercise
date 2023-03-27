@@ -22,12 +22,15 @@ dateElement.textContent=lastEditMessage(product.updated)
 titleElement.addEventListener('input', function (e) {
     e.preventDefault()
     product.title = e.target.value; 
+    product.updated=new Date()
     saveProducts(products)
 })
 
 priceElement.addEventListener('input', function (e) {
     e.preventDefault()
     product.price = e.target.value;
+    product.updated=new Date()
+    saveProducts(products)
 })
 
 //remove button for redirect 

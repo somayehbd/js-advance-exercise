@@ -35,8 +35,25 @@ const toggleProduct = function (id) {
     productIndex.exist = !productIndex.exist
     saveProducts(products)
 }
+// function for sort products
+const sortProducts = function (products, sortBy) {
+    if (sortBy === 'byEdited') {
+        return products.sort(function (a, b) {
+            if (a.updated < b.updated)
+                return 1
+            else if (a.updated > b.updated) {
+                return -1
+            }
+            else {
+                return 0
+            }
+
+        })
+    } return products
+}
 //function for filter products
 const renderProducts = function (products, filters) {
+    products = sortProducts(products, filters.sortBy)
     let filteredProducts = products.filter(function (item) {
         return item.title.toLowerCase().includes(filters.searchItem)
     })
@@ -65,14 +82,14 @@ const createProductDom = function (product) {
     const removeButton = document.createElement('button')
 
     checkbox.setAttribute('type', 'checkbox')
-    checkbox.checked= !product.exist
+    checkbox.checked = !product.exist
     productEl.appendChild(checkbox)
     checkbox.addEventListener('change', function () {
         toggleProduct(product.id)
     })
 
     productItem.textContent = product.title
-    productItem.setAttribute('href',`./edit-product.html#${product.id}`)
+    productItem.setAttribute('href', `./edit-product.html#${product.id}`)
     productEl.appendChild(productItem)
 
     productEl.appendChild(removeButton)
@@ -84,7 +101,7 @@ const createProductDom = function (product) {
     })
     return productEl
 }
-const lastEditMessage=function(updated){
+const lastEditMessage = function (updated) {
     let result = moment(updated)
     return result.format('MMM Do YYYY')
 }
