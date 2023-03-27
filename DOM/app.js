@@ -4,7 +4,7 @@ let products = getSavedProducts()
 const filters = {
     searchItem: '',
     availableProduts: false,
-    sortBy:'byEdited'
+    sortBy: 'byEdited'
 }
 
 renderProducts(products, filters)
@@ -35,14 +35,14 @@ document.querySelector('#checkbox').addEventListener('change', function (e) {
 
 })
 //function for localStorage
-window.addEventListener('storage', function(event) {
+window.addEventListener('storage', function (event) {
     if (event.key === 'product') {
-      const products = JSON.parse(event.newValue);
-      renderProducts(products, filters)
+        const products = JSON.parse(event.newValue);
+        renderProducts(products, filters)
     }
 })
-//function for select element
-document.querySelector('#sort').addEventListener('change',function(e){
-  filters.sortBy=e.target.value
-  renderProducts(products, filters)
+//function for sort element by edited
+document.querySelector('#sort').addEventListener('change', function (e) {
+    filters.sortBy = e.target.value
+    renderProducts(products, filters)
 })
