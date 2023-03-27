@@ -92,8 +92,9 @@ const createProductDom = function (product) {
     productItem.setAttribute('href', `./edit-product.html#${product.id}`)
     productEl.appendChild(productItem)
 
-    productEl.appendChild(removeButton)
     removeButton.textContent = 'Remove'
+    removeButton.className = 'remove'
+    productEl.appendChild(removeButton)
 
     removeButton.addEventListener('click', function () {
         removeProduct(product.id)
