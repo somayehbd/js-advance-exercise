@@ -5,28 +5,24 @@ const dateElement = document.querySelector('#last-edit');
 
 const productId = location.hash.substring(1)
 let products = getSavedProducts()
-let product = products.find(function (item) {
-    return item.id === productId
-})
+let product = products.find( item => item.id === productId)
 if (product === undefined || null) {
     location.assign('/index.html')
 }
 
 titleElement.value = product.title
 priceElement.value = product.price
-// let updated = moment(product.updated)
-// dateElement.textContent = updated.format('MMM Do YYYY')
 dateElement.textContent=lastEditMessage(product.updated)
 
 //update product info 
-titleElement.addEventListener('input', function (e) {
+titleElement.addEventListener('input',  (e) =>{
     e.preventDefault()
     product.title = e.target.value; 
     product.updated=new Date()
     saveProducts(products)
 })
 
-priceElement.addEventListener('input', function (e) {
+priceElement.addEventListener('input',  (e) =>{
     e.preventDefault()
     product.price = e.target.value;
     product.updated=new Date()
@@ -34,19 +30,17 @@ priceElement.addEventListener('input', function (e) {
 })
 
 //remove button for redirect 
-removeElement.addEventListener('click', function (e) {
+removeElement.addEventListener('click',  (e)=> {
     // product.title = ""
     removeProduct(product.id)
     saveProducts(products)
     location.assign('./index.html')
 })
 //sync data between pages
-window.addEventListener('storage', function (e) {
+window.addEventListener('storage',  (e) =>{
     if (e.key === 'product') {
         const products = JSON.parse(e.newValue);
-        product = products.find(function (item) {
-            return item.id === productId
-        })
+        product = products.find( item=> item.id === productId)
         if (product === undefined || null) {
             location.assign('/index.html')
         }

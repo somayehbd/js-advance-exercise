@@ -1,7 +1,7 @@
 
 
 //function for get products from localstorage
-const getSavedProducts = function () {
+const getSavedProducts = () => {
     const productsJSON = localStorage.getItem('product')
     if (productsJSON !== null)
         return JSON.parse(productsJSON);
@@ -11,12 +11,12 @@ const getSavedProducts = function () {
 }
 
 // function for save products in localStorage
-const saveProducts = function (products) {
+const saveProducts = (products) => {
     localStorage.setItem('product', JSON.stringify(products))
 }
 //function for delete product
-const removeProduct = function (id) {
-    const producindex = products.findIndex(function (item) {
+const removeProduct = (id) => {
+    const producindex = products.findIndex((item) => {
         return item.id == id
     })
 
@@ -26,8 +26,8 @@ const removeProduct = function (id) {
     products.splice(producindex, 1)
 }
 // function for to taggle property exist
-const toggleProduct = function (id) {
-    const productIndex = products.find(function (item) {
+const toggleProduct = (id) => {
+    const productIndex = products.find((item) => {
         return item.id == id
     })
     if (productIndex == undefined || productIndex == null)
@@ -36,7 +36,7 @@ const toggleProduct = function (id) {
     saveProducts(products)
 }
 // function for sort products
-const sortProducts = function (products, sortBy) {
+const sortProducts = (products, sortBy) => {
     if (sortBy === 'byEdited') {
         return products.sort(function (a, b) {
             if (a.updated < b.updated)
@@ -51,7 +51,7 @@ const sortProducts = function (products, sortBy) {
         })
         //sort by created
     } else if (sortBy === 'byCreated') {
-        return products.sort(function (a, b) {
+        return products.sort((a, b) => {
             if (a.created > b.created) {
                 return -1
             } else if (a.created < b.created) {
@@ -65,30 +65,28 @@ const sortProducts = function (products, sortBy) {
     }
 }
 //function for filter products
-const renderProducts = function (products, filters) {
+const renderProducts = (products, filters) => {
     products = sortProducts(products, filters.sortBy)
-    let filteredProducts = products.filter(function (item) {
+    let filteredProducts = products.filter((item) => {
         return item.title.toLowerCase().includes(filters.searchItem)
     })
     //checkbox for availableProdutcs
-    filteredProducts = filteredProducts.filter(function (item) {
+    filteredProducts = filteredProducts.filter((item) => {
         if (filters.availableProduts) {
             return item.exist
         }
-
         else {
             return true
         }
     })
     // to display products
     document.querySelector('#products').innerHTML = ''
-    filteredProducts.forEach(function (item) {
+    filteredProducts.forEach( (item)=>{
         document.querySelector('#products').appendChild(createProductDom(item))
-
     })
 }
 //function for create span,remove and checkbox
-const createProductDom = function (product) {
+const createProductDom =  (product) =>{
     const productEl = document.createElement('div')
     const checkbox = document.createElement('input')
     const productItem = document.createElement('a')
@@ -115,7 +113,7 @@ const createProductDom = function (product) {
     })
     return productEl
 }
-const lastEditMessage = function (updated) {
+const lastEditMessage =  (updated)=> {
     let result = moment(updated)
     return result.format('MMM Do YYYY')
 }
