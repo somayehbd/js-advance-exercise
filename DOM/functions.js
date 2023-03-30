@@ -3,11 +3,7 @@
 //function for get products from localstorage
 const getSavedProducts = () => {
     const productsJSON = localStorage.getItem('product')
-    if (productsJSON !== null)
-        return JSON.parse(productsJSON);
-    else {
-        return [];
-    }
+      return productsJSON !== null ? JSON.parse(productsJSON)  :[];
 }
 
 // function for save products in localStorage
@@ -81,12 +77,12 @@ const renderProducts = (products, filters) => {
     })
     // to display products
     document.querySelector('#products').innerHTML = ''
-    filteredProducts.forEach( (item)=>{
+    filteredProducts.forEach((item) => {
         document.querySelector('#products').appendChild(createProductDom(item))
     })
 }
 //function for create span,remove and checkbox
-const createProductDom =  (product) =>{
+const createProductDom = (product) => {
     const productEl = document.createElement('div')
     const checkbox = document.createElement('input')
     const productItem = document.createElement('a')
@@ -113,7 +109,7 @@ const createProductDom =  (product) =>{
     })
     return productEl
 }
-const lastEditMessage =  (updated)=> {
+const lastEditMessage = (updated) => {
     let result = moment(updated)
     return result.format('MMM Do YYYY')
 }
