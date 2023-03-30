@@ -20,13 +20,15 @@ document.querySelector('#Add-product-form').addEventListener('submit',  (e)=> {
     products.push({
         id: id,
         title: e.target.elements.ProductTitle.value,
+        price: e.target.elements.ProductPrice.value,
         exist: true,
         created: new Date(),
         updated: new Date()
     })
     saveProducts(products)
     renderProducts(products, filters)
-    e.target.elements.value = ''
+    e.target.elements.ProductTitle.value = ''
+    e.target.elements.ProductPrice.value = ''
 })
 // checkbox event for available products
 document.querySelector('#checkbox').addEventListener('change',  (e)=> {
