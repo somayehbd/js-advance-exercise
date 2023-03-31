@@ -111,5 +111,6 @@ const createProductDom = (product) => {
 }
 const lastEditMessage = (updated) => {
     let result = moment(updated)
-    return result.format('MMM Do YYYY')
+    return `last Updated: ${result.format('MMM Do YYYY')}`
+    
 }
