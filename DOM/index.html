@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
-    <h1>Book Store</h1>
-    <input type="text" id="searchProducts" placeholder="Search" />
-    <label>
-        <input type="checkbox" id="checkbox" />availableProdutcs
-    </label>
-    <select id="sort">
-        <option value="byEdited">by Edited</option>
-        <option value="byCreated">by Created</option>
-    </select>
-    <div id="products"></div>
-    <form id="Add-product-form">
-        <input type="text" placeholder=" Add Product" name="ProductTitle" />
-        <input type="text" placeholder=" Add Price" name="ProductPrice" />
+  <div class="container">
+    <div class="header">
+        <h1>Book Store</h1>
+      </div>
+    <div class="search-container">
+      <input type="text" id="searchProducts" placeholder="Search">
+      <label>
+        <input type="checkbox" id="checkbox">availableProdutcs
+      </label>
+    </div>
+    <div class="sort-container">
+      <select id="sort">
+        <option value="byEdited">sort by Edited</option>
+        <option value="byCreated">sort by Created</option>
+      </select>
+    </div>
+    <div class="add-product-container">
+      <form id="Add-product-form">
+        <input type="text" placeholder="Add Product" name="ProductTitle">
+        <input type="text" placeholder="Add Price" name="ProductPrice">
         <button type="submit">Add Product</button>
-    </form>
-    <script src="./moment.js"></script>
-    <script src="./uuid.js"></script>
-    <script src="./functions.js"></script>
-    <script src="./app.js"></script>
+      </form>
+    </div>
+    <div class="products-container" id="products"></div>
+  </div>
+  <script src="./moment.js"></script>
+  <script src="./uuid.js"></script>
+  <script src="./functions.js"></script>
+  <script src="./app.js"></script>
 </body>
-
 </html>

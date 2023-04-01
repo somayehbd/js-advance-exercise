@@ -3,7 +3,7 @@
 //function for get products from localstorage
 const getSavedProducts = () => {
     const productsJSON = localStorage.getItem('product')
-      return productsJSON !== null ? JSON.parse(productsJSON)  :[];
+    return productsJSON !== null ? JSON.parse(productsJSON) : [];
 }
 
 // function for save products in localStorage
@@ -90,18 +90,21 @@ const createProductDom = (product) => {
 
     checkbox.setAttribute('type', 'checkbox')
     checkbox.checked = !product.exist
+    checkbox.className='checkbox'
     productEl.appendChild(checkbox)
     checkbox.addEventListener('change', function () {
         toggleProduct(product.id)
     })
 
-    productItem.textContent = product.title
+    productItem.textContent = `${product.title} ${product.price}`
     productItem.setAttribute('href', `./edit-product.html#${product.id}`)
+    productItem.className = 'a'
     productEl.appendChild(productItem)
 
     removeButton.textContent = 'Remove'
     removeButton.className = 'remove'
     productEl.appendChild(removeButton)
+
 
     removeButton.addEventListener('click', function () {
         removeProduct(product.id)
@@ -112,5 +115,5 @@ const createProductDom = (product) => {
 const lastEditMessage = (updated) => {
     let result = moment(updated)
     return `last Updated: ${result.format('MMM Do YYYY')}`
-    
+
 }
